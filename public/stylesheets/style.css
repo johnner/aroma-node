@@ -1,0 +1,41 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*Navigation menu*/
+.menu {
+    padding: 20px;
+    display: block;
+    position: relative;
+    clear: both;
+    overflow: auto;
+}
+.nav-item {
+    list-style: none;
+    float: left;
+    margin-left: 10px;
+}
+
+.nav-item:first-child {
+    margin-left: 0;
+}
+
+.nav-link {}
+
+.delete-item {
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.content {
+    padding: 0 50px;
+}
+
+/* Aromas List */
+.odor {
+    margin-bottom: 7px;
+}

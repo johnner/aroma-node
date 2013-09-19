@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h2 Добавить запах
+	form#formAddAroma(name="addaroma", method="post", action="/aromas")
+		input#aromaName(type="text", placeholder="Латинское название", name="aromaname")
+		input#aromaTitle(type="text", placeholder="Название", name="aromatitle")
+		input#aromaLink(type="text", placeholder="URL", name="aromalink")
+		button#btnSubmit(type="submit") Добавить
