@@ -2,45 +2,45 @@
 var AROMAS = 'aromamood.aromas';
 var PRODUCTS = 'aromamood.products';
 
-exports.list = function (db) {
-	return function (req, res) {
-		var aromas = db.get(AROMAS);
-		aromas.find({}, "-products", function (e, docs) {
-			res.render('aromalist', {
-				"aromalist": docs
-			});
+//exports.list = function (db) {
+//	return function (req, res) {
+//		var aromas = db.get(AROMAS);
+//		aromas.find({}, "-products", function (e, docs) {
+//			res.render('aromalist', {
+//				"aromalist": docs
+//			});
+//
+//			//res.json({"aromas": docs});
+//		});
+//	};
+//};
 
-			//res.json({"aromas": docs});
-		});
-	};
-};
-
-exports.create = function (db) {
-	return function (req, res) {
-		//Get form values
-		var aromaName = req.body.aromaname;
-		var aromaTitle = req.body.aromatitle;
-		var aromaLink = req.body.aromalink;
-
-		//set collection
-		var collection = db.get(AROMAS);
-
-		//submit to DB
-		collection.insert({
-			"name": aromaName,
-			"title": aromaTitle,
-			"link": aromaLink,
-			"products": []
-		}, function (err, doc) {
-			if (err) {
-				res.send("There was a problem adding info to db");
-			} else {
-				res.redirect('aromas');
-				res.location('aromas');
-			}
-		});
-	};
-};
+//exports.create = function (db) {
+//	return function (req, res) {
+//		//Get form values
+//		var aromaName = req.body.aromaname;
+//		var aromaTitle = req.body.aromatitle;
+//		var aromaLink = req.body.aromalink;
+//
+//		//set collection
+//		var collection = db.get(AROMAS);
+//
+//		//submit to DB
+//		collection.insert({
+//			"name": aromaName,
+//			"title": aromaTitle,
+//			"link": aromaLink,
+//			"products": []
+//		}, function (err, doc) {
+//			if (err) {
+//				res.send("There was a problem adding info to db");
+//			} else {
+//				res.redirect('aromas');
+//				res.location('aromas');
+//			}
+//		});
+//	};
+//};
 
 exports.addaroma = function (req, res) {
 	res.render('addaroma', {title: 'Добавить запах'});
