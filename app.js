@@ -14,7 +14,6 @@ var path = require('path');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/aromamood');
-mongoose.set('debug', true);
 
 var app = express();
 
@@ -36,6 +35,7 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 	var edt = require('express-debug');
 	edt(app);
+	mongoose.set('debug', true);
 }
 
 var auth = express.basicAuth('johnner', '12345');
@@ -45,12 +45,9 @@ app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/aromas', aromasController.list);
-app.get('/addaroma', auth,  aroma.addaroma);
-//app.get('/aromas', aroma.list(db));
+app.get('/addaroma', auth,  aromasController.addaroma);
 app.post('/aromas', aromasController.create);
-
-
-//app.get('/deletearoma/:id', aroma.delete(db));
+app.get('/deletearoma/:id', aromasController.delete);
 
 //app.get('/aromas/:id(\\w{24})/products', aroma.aromaproducts(db));
 //app.post('/aromas/:id(\\w{24}/products)', aroma.createproduct(db));

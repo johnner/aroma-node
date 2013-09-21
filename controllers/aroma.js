@@ -20,15 +20,24 @@ exports.list = function (req, res) {
 };
 
 exports.create = function (req, res) {
-		var aroma = new Aroma({
-			name: req.body.aromaname,
-			title: req.body.aromatitle,
-			link: req.body.aromalink
-		});
+		var aroma = new Aroma(req.body);
 
 		aroma.save(function (err, aroma) {
 			if (err) res.send("There was a problem adding info to db");
 			res.redirect('aromas');
-			res.location('aromas');
+		});
+};
+
+/** Aroma adding form page */
+exports.addaroma = function (req, res) {
+	res.render('addaroma', {title: 'Добавить запах'});
+};
+
+
+exports.delete = function (req, res) {
+		var aroma_id = req.params.id;
+		Aroma.remove({"_id":aroma_id}, function (err) {
+			if (err) res.send("There was a problem adding info to db");
+			res.redirect('aromas');
 		});
 };

@@ -3,7 +3,7 @@ extends layout
 block content
 	h2 Добавить запах
 	form#formAddAroma(name="addaroma", method="post", action="/aromas")
-		input#aromaName(type="text", placeholder="Латинское название", name="aromaname")
-		input#aromaTitle(type="text", placeholder="Название", name="aromatitle")
-		input#aromaLink(type="text", placeholder="URL", name="aromalink")
+		input#aromaName(type="text", placeholder="Латинское название", name="name")
+		input#aromaTitle(type="text", placeholder="Название", name="title")
+		input#aromaLink(type="text", placeholder="URL", name="link")
 		button#btnSubmit(type="submit") Добавить

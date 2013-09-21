@@ -42,23 +42,21 @@ var PRODUCTS = 'aromamood.products';
 //	};
 //};
 
-exports.addaroma = function (req, res) {
-	res.render('addaroma', {title: 'Добавить запах'});
-};
 
-exports.delete = function (db) {
-	return function (req, res) {
-		var aroma_id = req.params.id;
-		var collection = db.get(AROMAS);
-		collection.remove({"_id":aroma_id}, {}, function (err, doc) {
-			if (err) {
-				res.send("There was a problem adding info to db");
-			} else {
-				res.redirect('aromas');
-			}
-		});
-	};
-};
+
+//exports.delete = function (db) {
+//	return function (req, res) {
+//		var aroma_id = req.params.id;
+//		var collection = db.get(AROMAS);
+//		collection.remove({"_id":aroma_id}, {}, function (err, doc) {
+//			if (err) {
+//				res.send("There was a problem adding info to db");
+//			} else {
+//				res.redirect('aromas');
+//			}
+//		});
+//	};
+//};
 
 exports.aromaproducts = function (db) {
 	return function (req, res) {
