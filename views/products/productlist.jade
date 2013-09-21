@@ -1,0 +1,8 @@
+extends ../layout
+block content
+	h2 Продукты
+	ul
+		each product, i in productlist
+			li.prod
+				a(href="#")= product.title
+				a.delete-item(href="/deleteproduct/#{product._id}") ×

@@ -4,8 +4,10 @@
 
 var mongoose = require('mongoose');
 require('../models/aroma');
-var Aroma = mongoose.model('Aroma');
+require('../models/product');
 
+var Aroma = mongoose.model('Aroma');
+var Product = mongoose.model('Product');
 
 exports.list = function (req, res) {
 	Aroma.list({}, function (err, aromas) {
@@ -21,7 +23,6 @@ exports.list = function (req, res) {
 
 exports.create = function (req, res) {
 		var aroma = new Aroma(req.body);
-
 		aroma.save(function (err, aroma) {
 			if (err) res.send("There was a problem adding info to db");
 			res.redirect('aromas');
@@ -40,4 +41,12 @@ exports.delete = function (req, res) {
 			if (err) res.send("There was a problem adding info to db");
 			res.redirect('aromas');
 		});
+};
+
+
+exports.aromaproducts = function (req, res) {
+	var aroma_id = req.params.id;
+	Aroma.findOne({"_id": aroma_id}).populate('products').exec(function(err, aroma) {
+		console.log('===== products ==== ', aroma.products);
+	});
 };

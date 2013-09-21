@@ -6,7 +6,6 @@
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
-var aroma = require('./routes/aroma');
 
 var http = require('http');
 var path = require('path');
@@ -38,18 +37,23 @@ if ('development' == app.get('env')) {
 	mongoose.set('debug', true);
 }
 
-var auth = express.basicAuth('johnner', '12345');
 var aromasController = require('./controllers/aroma');
+var productsController = require('./controllers/product');
 
 app.get('/', routes.index);
 app.get('/users', user.list);
 
 app.get('/aromas', aromasController.list);
-app.get('/addaroma', auth,  aromasController.addaroma);
+app.get('/addaroma', aromasController.addaroma);
 app.post('/aromas', aromasController.create);
 app.get('/deletearoma/:id', aromasController.delete);
 
-//app.get('/aromas/:id(\\w{24})/products', aroma.aromaproducts(db));
+app.get('/aromas/:id(\\w{24})/products', aromasController.aromaproducts);
+
+app.get('/products', productsController.list);
+app.get('/addproduct', productsController.createform);
+app.post('/products', productsController.create);
+
 //app.post('/aromas/:id(\\w{24}/products)', aroma.createproduct(db));
 
 

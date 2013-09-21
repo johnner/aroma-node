@@ -1,0 +1,9 @@
+extends ../layout
+
+block content
+	h2 Добавить продукт
+	form#formAddAroma(name="addproduct", method="post", action="/products")
+		input#aromaName(type="text", placeholder="Латинское название", name="name")
+		input#aromaTitle(type="text", placeholder="Название", name="title")
+		input#aromaLink(type="text", placeholder="URL", name="link")
+		button#btnSubmit(type="submit") Добавить
