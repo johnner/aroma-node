@@ -27,3 +27,13 @@ exports.create = function (req, res) {
 		res.redirect('products');
 	});
 };
+
+
+exports.delete = function (req, res) {
+	var product_id = req.params.id;
+	Product.remove({"_id":product_id}, function (err) {
+		if (err) res.send("There was a problem adding info to db");
+		res.redirect('products');
+	});
+};
+

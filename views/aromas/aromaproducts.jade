@@ -1,0 +1,11 @@
+extends ../layout
+block content
+	h2.products #{odor}:
+	if products
+		ul
+			each product, i in products
+				li.product
+					a(href="#")= product.title
+	else
+		div нет продуктов
+
