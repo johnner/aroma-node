@@ -3,6 +3,8 @@
  */
 
 var mongoose = require('mongoose');
+var $ = require('jquery');
+
 require('../models/aroma');
 require('../models/product');
 
@@ -12,12 +14,10 @@ var Product = mongoose.model('Product');
 exports.list = function (req, res) {
 	Aroma.list({}, function (err, aromas) {
 		if (err) return res.render('500');
-		Aroma.count().exec(function (err, count) {
-			res.render('aromas/aromalist', {
-				"aromalist": aromas
-			});
-			//res.json({"aromas": docs});
+		res.render('aromas/aromalist', {
+			"aromalist": aromas
 		});
+			//res.json({"aromas": docs});
 	});
 };
 
@@ -55,5 +55,27 @@ exports.aromaproducts = function (req, res) {
 
 //Link aromas to the product page view
 exports.link = function (req, res) {
-	res.render('aromas/linkaroma', {title: 'Связывайте ароматы и продукты'});
+	var aromas;
+	var products;
+	var aDfd = $.Deferred();
+	var pDfd = $.Deferred();
+
+	Aroma.list({}, function (err, odors) {
+		if (err) return res.render('500');
+		aromas = odors;
+		aDfd.resolve();
+	});
+	Product.list({}, function (err, prods) {
+		if (err) return res.render('500');
+		products = prods;
+		pDfd.resolve();
+	});
+
+	$.when(aDfd, pDfd).then(function () {
+		res.render('aromas/linkaroma', {
+				"title": "Связывайте ароматы с продуктами",
+				"aromas": aromas,
+				"products": products
+		});
+	});
 };

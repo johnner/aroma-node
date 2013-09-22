@@ -36,6 +36,16 @@ a {
 }
 
 /* Aromas List */
-.odor {
+.list-item {
     margin-bottom: 7px;
+}
+
+.linking-page .column {
+    float: left;
+    margin-right: 50px;
+}
+
+.linking-page .productlist,
+.linking-page .aromalist {
+    padding-left: 18px;
 }
