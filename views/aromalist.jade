@@ -1,8 +1,0 @@
-extends layout
-block content
-	h2 Ароматы
-	ul
-		each aroma, i in aromalist
-			li.odor
-				a(href="/aromas/#{aroma._id}/products")= aroma.title
-				a.delete-item(href="/deletearoma/#{aroma._id}") ×
