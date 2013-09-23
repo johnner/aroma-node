@@ -2,22 +2,16 @@ extends ../layout
 block content
 	h2=title
 	div.linking-page
-		section.products.column
-			h5 Продукты
-			ul.productlist
-				each product, i in products
-					li.prod.list-item
-						a(href="#{product.link}")= product.title
-						a.delete-item(href="/deleteproduct/#{product._id}") ×
+		form#linkAroma(name="linkaroma", method="post", action="/linkaroma")
+			section.products.column
+				h5 Продукты
+				select.productlist(name="product")
+					each product, i in products
+						option.prod(value="#{product._id}")= product.title
 
-		section.aromas.column
-			h5 Ароматы
-			ul.aromalist
-				each aroma, i in aromas
-					li.odor.list-item
-						a(href="/aromas/#{aroma._id}/products")= aroma.title
-						a.delete-item(href="/deletearoma/#{aroma._id}") ×
-
-
-
-
+			section.aromas.column
+				h5 Ароматы
+				select.aromalist(name="aroma")
+					each aroma, i in aromas
+						option.odor(value="#{aroma._id}")= aroma.title
+			button#btnSubmit(type="submit") Связать

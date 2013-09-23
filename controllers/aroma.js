@@ -54,7 +54,7 @@ exports.aromaproducts = function (req, res) {
 
 
 //Link aromas to the product page view
-exports.link = function (req, res) {
+exports.linkPage = function (req, res) {
 	var aromas;
 	var products;
 	var aDfd = $.Deferred();
@@ -77,5 +77,14 @@ exports.link = function (req, res) {
 				"aromas": aromas,
 				"products": products
 		});
+	});
+};
+
+
+//Create the link
+exports.link = function (req, res) {
+	console.log('link req body: ', req.body);
+	Aroma.findOne({"_id":req.body.aroma}, function (err, aroma) {
+		aroma.products.push( )
 	});
 };

@@ -13,6 +13,10 @@ var ProductSchema = new Schema({
 		files: []
 	},
 	link: { type: String, trim: true },
+	aromas: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Aroma'
+	}],
 	createdAt: { type: Date, default: Date.now }
 });
 

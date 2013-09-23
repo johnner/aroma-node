@@ -15,7 +15,8 @@ module.exports = function (app) {
 	//app.get('/aromas/:id(\\w{24})/products', aromasController.aromaproducts);
 
 	//Route for linking some aroma to the product
-	app.get('/linkaroma', aromasController.link);
+	app.get('/linkaroma', aromasController.linkPage);
+	app.post('/linkaroma', aromasController.link);
 
 	//Products routes
 	app.get('/products', productsController.list);
