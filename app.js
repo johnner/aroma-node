@@ -3,7 +3,9 @@
  * Module dependencies.
  */
 
+var database = require('./database');
 var express = require('express');
+var orm = require('orm');
 var http = require('http');
 var path = require('path');
 
@@ -12,6 +14,13 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost:27017/aromamood');
 
 var app = express();
+
+app.use(orm.express(database.connectionString), {
+	define: function (db, models) {
+		database.define(db);
+		models = db.models;
+	}
+});
 
 // all environments
 app.set('port', process.env.PORT || 3000);
